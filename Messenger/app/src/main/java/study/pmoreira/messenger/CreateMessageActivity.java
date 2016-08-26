@@ -18,15 +18,16 @@ public class CreateMessageActivity extends Activity {
     public void onSendMessage(View view) {
 
         EditText message = (EditText) findViewById(R.id.message);
+        EditText to = (EditText) findViewById(R.id.to);
 
         Intent intent = new Intent(Intent.ACTION_SEND);
         intent.setType("text/plain");
         intent.putExtra(Intent.EXTRA_TEXT, message.getText().toString());
+        intent.putExtra(Intent.EXTRA_EMAIL, new String[]{to.getText().toString()});
 
         Intent chooserIntent = Intent.createChooser(intent, getString(R.string.chooser));
 
         startActivity(chooserIntent);
-
     }
 
 }
