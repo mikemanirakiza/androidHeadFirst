@@ -2,6 +2,7 @@ package study.pmoreira.workout;
 
 
 import android.app.Fragment;
+import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,6 +25,12 @@ public class WorkoutDetailFragment extends Fragment {
 
         if (savedInstanceState != null) {
             setWorkoutId(savedInstanceState.getLong(WORKOUT_ID));
+        } else {
+            FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
+            transaction.replace(R.id.stopwatch_container, new StopwatchFragment());
+            transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+            transaction.addToBackStack(null);
+            transaction.commit();
         }
 
         return inflater.inflate(R.layout.fragment_workout_detail, container, false);
