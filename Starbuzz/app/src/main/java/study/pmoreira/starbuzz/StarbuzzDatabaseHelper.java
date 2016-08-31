@@ -11,12 +11,12 @@ public class StarbuzzDatabaseHelper extends SQLiteOpenHelper {
     private static final String DB_NAME = "starbuzz";
     private static final int DB_VERSION = 2;
 
-    private static final String TABLE_DRINK = "DRINK";
+    public static final String TABLE_DRINK = "DRINK";
 
-    private static final String COLUMN_NAME = "NAME";
-    private static final String COLUMN_DESCRIPTION = "DESCRIPTION";
-    private static final String COLUMN_IMAGE_RESOURCE_ID = "IMAGE_RESOURCE_ID";
-    private static final String COLUMN_FAVORITE = "FAVORITE";
+    public static final String COLUMN_NAME = "NAME";
+    public static final String COLUMN_DESCRIPTION = "DESCRIPTION";
+    public static final String COLUMN_IMAGE_RESOURCE_ID = "IMAGE_RESOURCE_ID";
+    public static final String COLUMN_FAVORITE = "FAVORITE";
 
     public StarbuzzDatabaseHelper(Context context) {
         super(context, DB_NAME, null, DB_VERSION);
@@ -41,11 +41,8 @@ public class StarbuzzDatabaseHelper extends SQLiteOpenHelper {
     }
 
     private void updateDatabase(SQLiteDatabase db, int oldVersion, int newVersion) {
-        switch (oldVersion) {
-            case 1: createDB(db); break;
-            case 2: updateDBVersion2(db); break;
-            default: throw new RuntimeException(); //TODO HANDLE ME
-        }
+        if (oldVersion < 1) createDB(db);
+        if (oldVersion < 2) updateDBVersion2(db);
     }
 
     private void createDB(SQLiteDatabase db) {
