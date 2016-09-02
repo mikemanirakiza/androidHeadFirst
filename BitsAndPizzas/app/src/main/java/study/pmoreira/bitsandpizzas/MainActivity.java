@@ -82,7 +82,7 @@ public class MainActivity extends Activity {
                         Fragment fragment = getFragmentManager().findFragmentByTag(VISIBLE_FRAGMENT);
 
                         if (fragment instanceof TopFragment) currentPosition = 0;
-                        if (fragment instanceof PizzaFragment) currentPosition = 1;
+                        if (fragment instanceof PizzaMaterialFragment) currentPosition = 1;
                         if (fragment instanceof PastaFragment) currentPosition = 2;
                         if (fragment instanceof StoresFragment) currentPosition = 3;
 
@@ -160,7 +160,7 @@ public class MainActivity extends Activity {
 
         switch (position) {
             case 1:
-                fragment = new PizzaFragment();
+                fragment = new PizzaMaterialFragment();
                 break;
             case 2:
                 fragment = new PastaFragment();
@@ -181,7 +181,7 @@ public class MainActivity extends Activity {
     }
 
     private void setActionBarTitle(int position) {
-        String title = position == 0 ? getResources().getString(R.string.app_name) : titles[position];
+        String title = position == 0 ? getString(R.string.app_name) : titles[position];
         getActionBar().setTitle(title);
     }
 
